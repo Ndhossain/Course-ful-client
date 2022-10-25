@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import {FaUserCircle} from 'react-icons/fa';
+import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs';
+
 
 const Header = () => {
+    const [lightToggler, setLightToggler] = useState(false);
     const {currentUser, logoutUser, loading} = useAuth();
     console.log(currentUser);
     return (
@@ -19,15 +22,15 @@ const Header = () => {
                         <Link className="font-medium hover:text-success" to='/blog'>Blogs</Link>
                     </ul>
                     {
-                        loading && (currentUser && currentUser.uid ? (
+                        !loading && (currentUser && currentUser.uid ? (
                             <div className="dropdown dropdown-end">
-                                <label tabIndex={0} className="btn btn-ghost avatar flex items-center gap-2 border border-success hover:border-success">
+                                <label tabIndex={0} className="btn btn-outline bg-transparent hover:bg-success avatar flex items-center gap-2 border border-success hover:border-success">
                                     <div className="w-10 rounded-full">
                                         {
                                             currentUser.photoURL ? (
                                                 <img src={currentUser.photoURL} alt={currentUser.displayName} />
                                             ) : (
-                                                <FaUserCircle />
+                                                <FaUserCircle size={40} />
                                             )
                                         }
                                     </div>
@@ -47,6 +50,11 @@ const Header = () => {
                             <Link to='/login' className="btn btn-outline btn-success">Log In</Link>
                         )
                     )}
+                    <div className='flex gap-2 items-center'>
+                        <BsFillSunFill color={!lightToggler ? '#36D399' : ''} size={24} />
+                        <input onChange={() => setLightToggler(!lightToggler)} type="checkbox" className="toggle toggle-sm" checked={lightToggler} />
+                        <BsFillMoonFill color={lightToggler ? '#36D399' : ''} size={24} />
+                    </div>
                 </div>
             </div>
         </nav>
