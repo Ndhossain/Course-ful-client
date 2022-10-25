@@ -1,7 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import heroman from '../../assets/heroman.png';
+import useAuth from '../../hooks/useAuth';
 
 const Herosection = () => {
+    const navigate = useNavigate();
+    const { currentUser, loading } = useAuth();
+
     return (
         <div className='flex mt-10 justify-between gap-10 items-center basis-2/4'>
             <div className='p-5 lg:p-10 hidden md:block'>
@@ -14,7 +19,7 @@ const Herosection = () => {
                 <p className='mt-8 text-gray-500 text-base md:text-lg'>
                     Start, switch, or advance your career with courses. Learn in depth and grow your career. Proffesional courses that can inhance your knowladge, Beginner friendly Advance courses to make a solid basic.
                 </p>
-                <button type='button' className="btn-lg btn-success border border-success rounded text-white mt-8 hover:bg-transparent hover:text-black">Join Now</button>
+                <button onClick={() => navigate(!loading && currentUser && currentUser.uid ? '/courses' : '/login')} type='button' className="btn-lg btn-success border border-success rounded text-white mt-8 hover:bg-transparent hover:text-black">{!loading && currentUser && currentUser.uid ? 'View Our Courses' : 'Join Now'}</button>
             </div>
         </div>
     );
