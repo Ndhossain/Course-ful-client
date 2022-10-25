@@ -10,7 +10,7 @@ const Header = () => {
     const {currentUser, logoutUser, loading} = useAuth();
     // console.log(currentUser);
     return (
-        <nav className="border-b border-b-success">
+        <nav className="border-b border-b-success sticky top-0">
             <div className="navbar bg-base-100 container mx-auto px-2 lg:px-5">
                 <div className="flex-1">
                     <Link to='/' className="font-semibold normal-case text-2xl text-success px-2 py-1 border-2 border-success rounded-md">CourseFul</Link>
