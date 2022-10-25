@@ -25,8 +25,8 @@ const AuthProvider = ({children}) => {
         try {
             await signInWithPopup(auth, provider);
         } catch (err) {
-            console.log(err.message);
             setError(err)
+            setLoading(false);
         } finally {
             if(!loading && !error) {
                 navigate()
@@ -48,12 +48,18 @@ const AuthProvider = ({children}) => {
                 ...user
             })
         } catch (err) {
-            console.log(err);
+            setError(err);
         } finally {
-            if(!loading && !error) {
-                navigate()
+            if(!loading && currentUser) {
+                console.log(error);
+                navigate();
             }
         }
+    }
+
+    const loginUser = (email, password) => {
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password);
     }
 
     const logoutUser = () => {
@@ -62,7 +68,7 @@ const AuthProvider = ({children}) => {
     }
 
     return (
-        <AuthContext.Provider value={{ currentUser, providerLogin, logoutUser, loading, registerUser, error }}>
+        <AuthContext.Provider value={{ currentUser, providerLogin, logoutUser, loading, registerUser, error, loginUser }}>
             {children}
         </AuthContext.Provider>
     );
