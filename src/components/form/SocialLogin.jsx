@@ -8,7 +8,7 @@ const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 const SocialLogin = () => {
-    const { providerLogin } = useAuth();
+    const { providerLogin, loading } = useAuth();
 
     return (
         <div className="flex flex-col gap-2 rounded-md">
@@ -18,12 +18,17 @@ const SocialLogin = () => {
                 onClick={() => {
                     providerLogin(googleProvider);
                 }}
+                disabled={loading}
             >
                 <FcGoogle /> Login with google
             </button>
             <button
                 type='button'
                 className="btn btn-outline gap-3"
+                onClick={() => {
+                    providerLogin(githubProvider);
+                }}
+                disabled={loading}
             >
                 <FaGithub /> Login with github
             </button>

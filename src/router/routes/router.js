@@ -1,6 +1,4 @@
 import { createBrowserRouter } from "react-router-dom";
-import LoginForm from "../../components/form/LoginForm";
-import RegisterForm from "../../components/form/RegisterForm";
 import Layout from "../../layout/Layout";
 import Blog from "../pages/Blog";
 import CourseDetails from "../pages/CourseDetails";
@@ -16,14 +14,7 @@ const router = createBrowserRouter([
         children: [
             {path: '/', element: <Home />},
             {path: '/blog', element: <Blog />},
-            {
-                path: '/login',
-                element: <LoginPage />,
-                children: [
-                    {path: '/login', element: <LoginForm />},
-                    {path: '/login/register', element: <RegisterForm />},
-                ],
-            },
+            {path: '/login',element: <LoginPage />},
             {path: '/courses', element: <CoursePage />},
             {path: '/courses/:id', element: <Courses />},
             {path: '/coursedetail/:id', element: <CourseDetails />},

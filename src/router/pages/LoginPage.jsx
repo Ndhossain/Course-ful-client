@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import LoginForm from '../../components/form/LoginForm';
+import RegisterForm from '../../components/form/RegisterForm';
 
 const LoginPage = () => {
     const [loginActive, setLoginActive] = useState(true);
@@ -9,7 +10,8 @@ const LoginPage = () => {
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col">
                 <div className="btn-group">
-                    <NavLink 
+                    <button
+                        type='button' 
                         onClick={() => {
                             setLoginActive(true);
                             setRegisterActive(false);
@@ -18,8 +20,9 @@ const LoginPage = () => {
                         className={`btn ${loginActive ? 'btn-success' : ''}`}
                     >
                         Login
-                    </NavLink>
-                    <NavLink
+                    </button>
+                    <button
+                        type='button'
                         onClick={() => {
                             setRegisterActive(true);
                             setLoginActive(false);
@@ -28,9 +31,10 @@ const LoginPage = () => {
                         className={`btn ${registerActive ? 'btn-success' : ''}`}
                     >
                         Register
-                    </NavLink>
+                    </button>
                 </div>
-                <Outlet />
+                {loginActive && <LoginForm />}
+                {registerActive && <RegisterForm />}
             </div>
         </div>
     );

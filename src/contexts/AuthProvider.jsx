@@ -11,14 +11,15 @@ const AuthProvider = ({children}) => {
     useEffect(() => {
         const auth = getAuth();
         const unSubscribe = onAuthStateChanged(auth, (user) => {
-            setLoading(false);
             setCurrentUser(user);
+            setLoading(false);
         })
 
         return unSubscribe;
     }, [])
 
     const providerLogin = (provider) => {
+        setLoading(true);
         const auth = getAuth();
         try {
             signInWithPopup(auth, provider);

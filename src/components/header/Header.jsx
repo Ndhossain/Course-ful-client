@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import {FaUserCircle} from 'react-icons/fa';
 
 const Header = () => {
-    const {currentUser, logoutUser} = useAuth();
+    const {currentUser, logoutUser, loading} = useAuth();
     console.log(currentUser);
     return (
         <nav className="border-b border-b-success">
@@ -18,11 +19,17 @@ const Header = () => {
                         <Link className="font-medium hover:text-success" to='/blog'>Blogs</Link>
                     </ul>
                     {
-                        currentUser && currentUser.uid ? (
+                        loading && (currentUser && currentUser.uid ? (
                             <div className="dropdown dropdown-end">
                                 <label tabIndex={0} className="btn btn-ghost avatar flex items-center gap-2 border border-success hover:border-success">
                                     <div className="w-10 rounded-full">
-                                        <img src={currentUser.photoURL} alt={currentUser.displayName} />
+                                        {
+                                            currentUser.photoURL ? (
+                                                <img src={currentUser.photoURL} alt={currentUser.displayName} />
+                                            ) : (
+                                                <FaUserCircle />
+                                            )
+                                        }
                                     </div>
                                     <span className='none sm:block'>{currentUser.displayName}</span>
                                 </label>
@@ -39,7 +46,7 @@ const Header = () => {
                         ) : (
                             <Link to='/login' className="btn btn-outline btn-success">Log In</Link>
                         )
-                    }
+                    )}
                 </div>
             </div>
         </nav>
