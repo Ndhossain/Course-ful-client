@@ -1,12 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
+import LoginForm from "../../components/form/LoginForm";
+import RegisterForm from "../../components/form/RegisterForm";
 import Layout from "../../layout/Layout";
 import Blog from "../pages/Blog";
 import CourseDetails from "../pages/CourseDetails";
 import CoursePage from "../pages/CoursePage";
 import Courses from "../pages/Courses";
 import Home from "../pages/Home";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
+import LoginPage from "../pages/LoginPage";
 
 const router = createBrowserRouter([
     {
@@ -15,8 +16,14 @@ const router = createBrowserRouter([
         children: [
             {path: '/', element: <Home />},
             {path: '/blog', element: <Blog />},
-            {path: '/login', element: <Login />},
-            {path: '/register', element: <Register />},
+            {
+                path: '/login',
+                element: <LoginPage />,
+                children: [
+                    {path: '/login', element: <LoginForm />},
+                    {path: '/login/register', element: <RegisterForm />},
+                ],
+            },
             {path: '/courses', element: <CoursePage />},
             {path: '/courses/:id', element: <Courses />},
             {path: '/coursedetail/:id', element: <CourseDetails />},
