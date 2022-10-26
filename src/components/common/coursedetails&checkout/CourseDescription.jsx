@@ -4,7 +4,7 @@ const CourseDescription = ({ courseDetail }) => {
     const {picture, name, creator, details, price, description, registered, language} = courseDetail;
 
     return (
-        <div className="mt-[112px] max-w-3xl mx-auto bg-slate-50 p-4">
+        <div className="max-w-3xl mx-auto bg-slate-50 p-4">
                 <div className='flex flex-col-reverse sm:flex-row justify-between items-center border-b border-success py-2'>
                     <div>
                         <h1 className='text-xl font-medium'>Course Name: {name}</h1>

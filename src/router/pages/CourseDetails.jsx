@@ -13,7 +13,7 @@ const CourseDetails = () => {
     return (
         <div>
             <CourseDetailNav name={name} details={details} pdfRef={ref} />
-            <div ref={ref}>
+            <div ref={ref} className="mt-[112px]">
                 <CourseDescription courseDetail={courseDetail} />
             </div>
             <div className='flex justify-center mt-5'>
