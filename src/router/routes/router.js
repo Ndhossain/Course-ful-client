@@ -3,20 +3,31 @@ import Layout from "../../layout/Layout";
 import Blog from "../pages/Blog";
 import CourseDetails from "../pages/CourseDetails";
 import CoursePage from "../pages/CoursePage";
-import Courses from "../pages/Courses";
+import Courses from "../../components/coursepage/Courses";
 import Home from "../pages/Home";
 import LoginPage from "../pages/LoginPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
+        loader: () => fetch('http://localhost:5000/categories'),
         element: <Layout />,
         children: [
-            {path: '/', loader: () => fetch('http://localhost:5000/categories'), element: <Home />},
+            {path: '/', element: <Home />},
             {path: '/blog', element: <Blog />},
             {path: '/login',element: <LoginPage />},
-            {path: '/courses', element: <CoursePage />},
-            {path: '/courses/:id', element: <Courses />},
+            {
+                path: '/courses',
+                element: <CoursePage />,
+                children: [
+                    {
+                        path: '/courses/:id',
+                        loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`),
+                        element: <Courses />
+                    },
+                ]
+            },
+            
             {path: '/coursedetail/:id', element: <CourseDetails />},
         ]
     }

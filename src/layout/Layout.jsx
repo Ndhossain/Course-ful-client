@@ -1,15 +1,18 @@
-import React from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { createContext } from 'react';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import Header from '../components/header/Header';
 
+export const CategoryContext = createContext();
+
 const Layout = () => {
+    const categories = useLoaderData();
     return (
-        <div>
+        <CategoryContext.Provider value={categories}>
             <Header />
             <main className='container mx-auto px-2 lg:px-5'>
                 <Outlet />
             </main>
-        </div>
+        </CategoryContext.Provider>
     );
 };
 

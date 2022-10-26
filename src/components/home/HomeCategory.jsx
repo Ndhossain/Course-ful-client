@@ -1,9 +1,10 @@
-import React from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { CategoryContext } from '../../layout/Layout';
 import Categorybox from './Categorybox';
 
 const HomeCategory = () => {
-    const categories = useLoaderData();
+    const categories = useContext(CategoryContext);
     const navigate = useNavigate();
     console.log(categories);
     return (
@@ -15,7 +16,7 @@ const HomeCategory = () => {
                         if (index < 6) {
                             return <Categorybox key={category.id} category={category} />
                         }
-                        return <></>;
+                        return null;
                     })
                 }
             </div>

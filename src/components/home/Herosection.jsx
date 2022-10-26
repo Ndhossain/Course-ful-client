@@ -17,7 +17,7 @@ const Herosection = () => {
             <div className='p-5 text-center md:text-left md:basis-3/4'>
                 <h1 className='text-4xl md:text-6xl lg:text-8xl font-semibold'>Learn with no limits</h1>
                 <p className='mt-8 text-gray-500 text-base md:text-lg'>
-                    Start, switch, or advance your career with courses. Learn in depth and grow your career. Proffesional courses that can inhance your knowladge, Beginner friendly Advance courses to make a solid basic.
+                    Start, switch, or advance your career with courses. Learn in depth and grow your career. Proffesional courses that can inhance your knowladge, Beginner friendly courses to make a solid basic.
                 </p>
                 <button onClick={() => navigate(!loading && currentUser && currentUser.uid ? '/courses' : '/login')} type='button' className="btn-lg btn-success border border-success rounded text-white mt-8 hover:bg-transparent hover:text-black">{!loading && currentUser && currentUser.uid ? 'View Our Courses' : 'Join Now'}</button>
             </div>
