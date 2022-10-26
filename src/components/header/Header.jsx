@@ -8,7 +8,7 @@ import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs';
 const Header = () => {
     const [lightToggler, setLightToggler] = useState(false);
     const {currentUser, logoutUser, loading} = useAuth();
-    // console.log(currentUser);
+
     return (
         <nav className="border-b border-b-success sticky top-0 z-50">
             <div className="navbar bg-base-100 container mx-auto px-2 lg:px-5">
@@ -22,7 +22,7 @@ const Header = () => {
                         <Link className="font-medium hover:text-success" to='/blog'>Blogs</Link>
                     </ul>
                     {
-                        !loading && currentUser && currentUser?.uid ? (
+                        !loading && (currentUser && currentUser?.uid ? (
                             <div className="dropdown dropdown-end">
                                 <label tabIndex={0} className="btn btn-outline bg-transparent hover:bg-success avatar flex items-center gap-2 border border-success hover:border-success">
                                     <div className="w-10 rounded-full">
@@ -48,7 +48,7 @@ const Header = () => {
                             </div>
                         ) : (
                             <Link to='/login' className="btn btn-outline btn-success">Log In</Link>
-                        )
+                        ))
                     }
                     <div className='flex gap-2 items-center'>
                         <BsFillSunFill color={!lightToggler ? '#36D399' : ''} size={24} />

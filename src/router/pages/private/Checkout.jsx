@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import CourseDescription from '../../components/common/coursedetails&checkout/CourseDescription';
+import CourseDescription from '../../../components/common/coursedetails&checkout/CourseDescription';
 
 const Checkout = () => {
     const courseDetail = useLoaderData();

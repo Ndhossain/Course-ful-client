@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from './SocialLogin';
 
-const RegisterForm = () => {
+const RegisterForm = ({from}) => {
     const [userInfo, setUserInfo] = useState({email: '', password: '', name: '', imageURL: ''});
     const [error, setError] = useState('');
     const [termsAcceptance, setTermsAcceptance] = useState(false);
-    const { registerUser, loading, error: authError } = useAuth();
+    const { registerUser, loading, setLoading } = useAuth();
     const navigate = useNavigate();
 
     const emailValidation = (e) => {
@@ -26,17 +26,20 @@ const RegisterForm = () => {
         setUserInfo({...userInfo, password: e.target.value})
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         if(!error && userInfo.email && userInfo.password && termsAcceptance) {
-            registerUser(userInfo.email, userInfo.password, userInfo.name, userInfo.imageURL, () => {
-                navigate('/')
-            })
+            try {
+                await registerUser(userInfo.email, userInfo.password, userInfo.name, userInfo.imageURL)
+                navigate(from)
+            } catch (err) {
+                console.log(err);
+                setError(err.message);
+                setLoading(false)
+            }
         }
     }
-
-    console.log(authError)
 
     return (
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
@@ -82,7 +85,7 @@ const RegisterForm = () => {
                     </div>
                 </form>
                 <div className="divider">OR</div>
-                <SocialLogin />
+                <SocialLogin from={from} setError={setError} />
             </div>
         </div>
     );

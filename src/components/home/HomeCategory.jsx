@@ -6,7 +6,7 @@ import Categorybox from './Categorybox';
 const HomeCategory = () => {
     const categories = useContext(CategoryContext);
     const navigate = useNavigate();
-    console.log(categories);
+
     return (
         <div className='mt-10 flex flex-col items-center'>
             <h1 className='text-center text-3xl font-medium'>Popular Categories</h1>

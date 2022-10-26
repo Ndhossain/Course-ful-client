@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import LoginForm from '../../components/form/LoginForm';
 import RegisterForm from '../../components/form/RegisterForm';
 
 const LoginPage = () => {
     const [loginActive, setLoginActive] = useState(true);
     const [registerActive, setRegisterActive] = useState(false);
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || '/';
     
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -33,8 +36,8 @@ const LoginPage = () => {
                         Register
                     </button>
                 </div>
-                {loginActive && <LoginForm />}
-                {registerActive && <RegisterForm />}
+                {loginActive && <LoginForm from={from} />}
+                {registerActive && <RegisterForm from={from} />}
             </div>
         </div>
     );
