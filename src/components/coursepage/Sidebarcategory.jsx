@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { AiFillCaretDown } from 'react-icons/ai';
+import { AiFillCaretDown,AiFillCaretUp } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { CategoryContext } from '../../layout/Layout';
 
@@ -14,9 +14,9 @@ const Sidebarcategory = () => {
                 onClick={() => setCategoryMenu(!categroyMenu)}
             >
                 Select Categories
-                <AiFillCaretDown />
+                {categroyMenu ? <AiFillCaretUp /> : <AiFillCaretDown />}
             </button>
-            <div className='sticky top-[64px]'>
+            <div className='sticky top-[65px]'>
                 <ul 
                     className={`${categroyMenu ? 'h-full' : 'h-0'} md:h-full overflow-hidden flex flex-col gap-3 mt-5`}
                 >

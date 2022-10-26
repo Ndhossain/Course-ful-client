@@ -3,7 +3,7 @@ import React from 'react';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
@@ -14,8 +14,9 @@ const SocialLogin = ({from, setError}) => {
 
     const googleLogin = async () => {
         try {
+            setError('');
             await providerLogin(googleProvider);
-            navigate(from)
+            navigate(from, {replace: true})
         } catch (err) {
             console.log(err);
             setError(err.message);
@@ -25,8 +26,9 @@ const SocialLogin = ({from, setError}) => {
 
     const githubLogin = async () => {
         try {
+            setError('');
             await providerLogin(githubProvider);
-            navigate(from)
+            navigate(from, {replace: true})
         } catch (err) {
             console.log(err);
             setError(err.message);

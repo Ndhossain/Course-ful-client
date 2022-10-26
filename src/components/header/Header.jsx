@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import {FaUserCircle} from 'react-icons/fa';
 import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs';
+import {CgMenu} from 'react-icons/cg';
+import {ImCross} from 'react-icons/im'
 
 
 const Header = () => {
     const [lightToggler, setLightToggler] = useState(false);
+    const [menuActive, setMenuActive] = useState(false);
     const {currentUser, logoutUser, loading} = useAuth();
 
     return (
@@ -15,11 +18,17 @@ const Header = () => {
                 <div className="flex-1">
                     <Link to='/' className="font-semibold normal-case text-2xl text-success px-2 py-1 border-2 border-success rounded-md">CourseFul</Link>
                 </div>
-                <div className="flex-none gap-3">
+                <div onClick={() => setMenuActive(!menuActive)} className='md:hidden'>
+                    {menuActive ? <ImCross size={24} /> : <CgMenu size={24} />}
+                </div>
+                <div 
+                    className={`flex-none gap-3 md:static fixed ${menuActive ? 'top-[65px]' : '-top-full'} w-screen left-0 py-5 md:py-0 bg-white md:w-fit flex-col md:flex-row duration-300`}
+                >
                     <ul className="menu-horizontal p-0 gap-3">
                         <Link className="font-medium hover:text-success" to='/'>Home</Link>
                         <Link className="font-medium hover:text-success" to='/courses'>Courses</Link>
                         <Link className="font-medium hover:text-success" to='/blog'>Blogs</Link>
+                        <Link className="font-medium hover:text-success" to='/faq'>FAQ</Link>
                     </ul>
                     {
                         !loading && (currentUser && currentUser?.uid ? (
@@ -51,9 +60,9 @@ const Header = () => {
                         ))
                     }
                     <div className='flex gap-2 items-center'>
-                        <BsFillSunFill color={!lightToggler ? '#36D399' : ''} size={24} />
+                        <BsFillSunFill color={!lightToggler ? 'rgba(102, 130, 169, 0.2)' : ''} size={24} />
                         <input onChange={() => setLightToggler(!lightToggler)} type="checkbox" className="toggle toggle-sm" checked={lightToggler} />
-                        <BsFillMoonFill color={lightToggler ? '#36D399' : ''} size={24} />
+                        <BsFillMoonFill color={!lightToggler ? 'rgba(102, 130, 169, 0.2)' : ''} size={24} />
                     </div>
                 </div>
             </div>

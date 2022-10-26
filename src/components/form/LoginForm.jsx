@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import SocialLogin from './SocialLogin';
+import SocialLogin from '../common/sociallogin/SocialLogin';
 
 const LoginForm = ({from}) => {
     const [userInfo, setUserInfo] = useState({email: '', password: ''});
@@ -14,8 +14,9 @@ const LoginForm = ({from}) => {
         e.preventDefault();
         if(userInfo.email && userInfo.password) {
             try {
+                setError('');
                 await loginUser(userInfo.email, userInfo.password);
-                navigate(from);
+                navigate(from, {replace: true});
                 setUserInfo({email: '', password: ''})
             } catch (err) {
                 console.log(err);
@@ -26,7 +27,7 @@ const LoginForm = ({from}) => {
     }
 
     return (
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 w-11/12 max-w-md shadow-2xl mx-auto bg-base-100">
             <div className="card-body">
                 <p className='text-red-600'>{error}</p>
                 <form onSubmit={handleSubmit}>

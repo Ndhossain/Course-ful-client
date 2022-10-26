@@ -5,7 +5,7 @@ import ReactToPdf from 'react-to-pdf'
 
 const CourseDetailNav = ({name, details, pdfRef}) => {
     return (
-        <div className='bg-black w-screen fixed top-[64px] left-0 text-white'>
+        <div className='bg-black w-screen fixed top-[65px] left-0 text-white'>
             <div className='container mx-auto px-2 lg:px-5 py-3 flex justify-between items-center'>
                 <div>
                     <h1 className='text-xl font-semibold'>Learn: {name}</h1>

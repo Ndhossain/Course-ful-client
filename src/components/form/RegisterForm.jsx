@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import SocialLogin from './SocialLogin';
+import SocialLogin from '../common/sociallogin/SocialLogin';
 
 const RegisterForm = ({from}) => {
     const [userInfo, setUserInfo] = useState({email: '', password: '', name: '', imageURL: ''});
@@ -31,8 +31,9 @@ const RegisterForm = ({from}) => {
 
         if(!error && userInfo.email && userInfo.password && termsAcceptance) {
             try {
+                setError('');
                 await registerUser(userInfo.email, userInfo.password, userInfo.name, userInfo.imageURL)
-                navigate(from)
+                navigate(from, {replace: true})
             } catch (err) {
                 console.log(err);
                 setError(err.message);
@@ -42,7 +43,7 @@ const RegisterForm = ({from}) => {
     }
 
     return (
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="card flex-shrink-0 w-11/12 max-w-md shadow-2xl mx-auto bg-base-100">
             <div className="card-body">
                 <p className='text-red-600'>{error}</p>
                 <form onSubmit={handleSubmit}>
@@ -50,36 +51,55 @@ const RegisterForm = ({from}) => {
                         <label className="label">
                             <span className="label-text">Full Name</span>
                         </label>
-                        <input onBlur={(e) => setUserInfo({...userInfo, name: e.target.value})} type="text" placeholder="full name" className="input input-bordered" />
+                        <input 
+                            onBlur={(e) => setUserInfo({...userInfo, name: e.target.value})} 
+                            type="text" 
+                            placeholder="full name" 
+                            className="input input-bordered"
+                            required
+                        />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Photo URL</span>
                         </label>
-                        <input onBlur={(e) => setUserInfo({...userInfo, imageURL: e.target.value})} type="text" placeholder="photo url" className="input input-bordered" />
+                        <input 
+                            onBlur={(e) => setUserInfo({...userInfo, imageURL: e.target.value})} 
+                            type="text" 
+                            placeholder="photo url" 
+                            className="input input-bordered"
+                        />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input onChange={(e) => emailValidation(e)} value={userInfo.email} type="email" placeholder="email" className="input input-bordered" />
+                        <input 
+                            onChange={(e) => emailValidation(e)} value={userInfo.email}
+                            type="email" 
+                            placeholder="email" 
+                            className="input input-bordered"
+                            required
+                        />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>
                         </label>
                         <input onChange={(e) => passwordValidation(e)} value={userInfo.password} type="password" placeholder="password" className="input input-bordered" />
-                        <label className="label">
-                            <Link className="label-text-alt link link-hover">Forgot password?</Link>
-                        </label>
                     </div>
                     <div className="form-control">
                         <label className="cursor-pointer label justify-start gap-2">
-                            <input onChange={() => setTermsAcceptance(!termsAcceptance)} type="checkbox" checked={termsAcceptance} className="checkbox-xs" />
+                            <input 
+                                onChange={() => setTermsAcceptance(!termsAcceptance)} 
+                                type="checkbox" 
+                                checked={termsAcceptance} 
+                                className="checkbox-xs"
+                                required
+                            />
                             <span className="label-text">I accept your <Link>Terms & Conditions</Link></span>
                         </label>
                     </div>
-                    {/* <p className='text-red-600'>{authError.message}</p> */}
                     <div className="form-control mt-6">
                         <button type='submit' disabled={!termsAcceptance && !loading ? true : false} className="btn btn-success bg-transparent hover:bg-success">Register</button>
                     </div>

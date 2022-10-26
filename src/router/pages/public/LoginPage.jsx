@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import LoginForm from '../../components/form/LoginForm';
-import RegisterForm from '../../components/form/RegisterForm';
+import LoginForm from '../../../components/form/LoginForm';
+import RegisterForm from '../../../components/form/RegisterForm';
 
 const LoginPage = () => {
     const [loginActive, setLoginActive] = useState(true);
@@ -11,7 +11,7 @@ const LoginPage = () => {
     
     return (
         <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col">
+            <div className="hero-content flex-col px-0 sm:p-4 w-12/12 md:w-4/6 lg:w-1/2 items-center">
                 <div className="btn-group">
                     <button
                         type='button' 

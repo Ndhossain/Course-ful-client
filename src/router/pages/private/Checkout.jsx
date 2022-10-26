@@ -16,9 +16,9 @@ const Checkout = () => {
                 <button
                     disabled={!termsAcceptance}
                     onClick={() => console.log('clicked')}
-                    className="btn-lg rounded-md hover:bg-transparent border border-success btn-success text-center"
+                    className="btn btn-outline btn-success"
                 >
-                    Confirm Checkout
+                    <span className='text-black'>Confirm Checkout</span>
                 </button>
             </div>
         </div>

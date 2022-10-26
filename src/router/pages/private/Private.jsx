@@ -5,7 +5,6 @@ import useAuth from '../../../hooks/useAuth';
 const Private = ({children}) => {
     const {loading, currentUser} = useAuth();
     const location = useLocation();
-    console.log(loading)
 
     if(!loading) {
         if (currentUser && currentUser?.uid) {
