@@ -33,7 +33,11 @@ const router = createBrowserRouter([
                 ]
             },
             
-            {path: '/coursedetail/:id', element: <CourseDetails />},
+            {
+                path: '/coursedetail/:id',
+                loader: ({params}) => fetch(`http://localhost:5000/coursedetails/${params.id}`),
+                element: <CourseDetails />
+            },
         ]
     }
 ]);
