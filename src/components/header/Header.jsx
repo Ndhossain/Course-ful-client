@@ -5,6 +5,7 @@ import {FaUserCircle} from 'react-icons/fa';
 import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs';
 import {CgMenu} from 'react-icons/cg';
 import {ImCross} from 'react-icons/im'
+import Logo from '../common/logo/Logo';
 
 
 const Header = () => {
@@ -15,9 +16,7 @@ const Header = () => {
     return (
         <nav className="border-b border-b-success sticky top-0 z-50">
             <div className="navbar bg-base-100 container mx-auto px-2 lg:px-5">
-                <div className="flex-1">
-                    <Link to='/' className="font-semibold normal-case text-2xl text-success px-2 py-1 border-2 border-success rounded-md">CourseFul</Link>
-                </div>
+                <Logo />
                 <div onClick={() => setMenuActive(!menuActive)} className='md:hidden'>
                     {menuActive ? <ImCross size={24} /> : <CgMenu size={24} />}
                 </div>

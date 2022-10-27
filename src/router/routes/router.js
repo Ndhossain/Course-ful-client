@@ -10,11 +10,13 @@ import Checkout from "../pages/private/Checkout";
 import Private from "../pages/private/Private";
 import PublicOnly from "../pages/public/PublicOnly";
 import Faq from "../pages/Faq";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
     {
         path: '/',
         loader: () => fetch('https://course-ful-server.vercel.app/categories'),
+        errorElement: <ErrorPage />,
         element: <Layout />,
         children: [
             {path: '/', element: <Home />},
