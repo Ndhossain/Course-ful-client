@@ -1,5 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import React from 'react';
+import toast from 'react-hot-toast';
 import { FaGithub } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { useNavigate } from 'react-router-dom';
@@ -16,11 +17,13 @@ const SocialLogin = ({from, setError}) => {
         try {
             setError('');
             await providerLogin(googleProvider);
+            toast.success('Successfully Logged In');
             navigate(from, {replace: true})
         } catch (err) {
             console.log(err);
             setError(err.message);
             setLoading(false);
+            toast.error('Something Went Wrong');
         }
     }
 
@@ -28,11 +31,13 @@ const SocialLogin = ({from, setError}) => {
         try {
             setError('');
             await providerLogin(githubProvider);
+            toast.success('Successfully Logged In');
             navigate(from, {replace: true})
         } catch (err) {
             console.log(err);
             setError(err.message);
             setLoading(false);
+            toast.error('Something Went Wrong');
         }
     }
 

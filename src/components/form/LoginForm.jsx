@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from '../common/sociallogin/SocialLogin';
+import Passwordreset from './Passwordreset';
 
 const LoginForm = ({from}) => {
     const [userInfo, setUserInfo] = useState({email: '', password: ''});
     const {loginUser, loading, setLoading} = useAuth();
     const [error, setError] = useState('');
+    const [resetForm, setResetForm] = useState(false);
 
     const navigate = useNavigate();
 
@@ -17,11 +20,13 @@ const LoginForm = ({from}) => {
                 setError('');
                 await loginUser(userInfo.email, userInfo.password);
                 navigate(from, {replace: true});
+                toast.success('Successfully Logged In');
                 setUserInfo({email: '', password: ''})
             } catch (err) {
                 console.log(err);
                 setError(err.message);
                 setLoading(false);
+                toast.error('Something Went Wrong');
             }
         }
     }
@@ -57,7 +62,7 @@ const LoginForm = ({from}) => {
                             className="input input-bordered" 
                         />
                         <label className="label">
-                            <Link className="label-text-alt link link-hover">Forgot password?</Link>
+                            <span onClick={() => setResetForm(true)} className="label-text-alt link link-hover">Forgot password?</span>
                         </label>
                     </div>
                     <div className="form-control mt-6">
@@ -67,6 +72,7 @@ const LoginForm = ({from}) => {
                 <div className="divider">OR</div>
                 <SocialLogin from={from} setError={setError} />
             </div>
+            {resetForm && <Passwordreset setResetForm={setResetForm} from={from} />}
         </div>
     );
 };

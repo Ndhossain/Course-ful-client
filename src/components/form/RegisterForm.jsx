@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import SocialLogin from '../common/sociallogin/SocialLogin';
@@ -32,12 +33,14 @@ const RegisterForm = ({from}) => {
         if(!error && userInfo.email && userInfo.password && termsAcceptance) {
             try {
                 setError('');
-                await registerUser(userInfo.email, userInfo.password, userInfo.name, userInfo.imageURL)
-                navigate(from, {replace: true})
+                await registerUser(userInfo.email, userInfo.password, userInfo.name, userInfo.imageURL);
+                toast.success('Successfully Registered. Check your email to verify youself.');
+                navigate(from, {replace: true});
             } catch (err) {
                 console.log(err);
                 setError(err.message);
-                setLoading(false)
+                setLoading(false);
+                toast.error('Something Went Wrong');
             }
         }
     }

@@ -11,7 +11,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * CSS Plugin: DaisyUI.
 * Icons: React Icons.
 * Pdf: React-to-pdf.
-* Toast: React-Toastify
+* Toast: React-hot-toast
 * Package Manager: Yarn.
 
 ## Project Details:

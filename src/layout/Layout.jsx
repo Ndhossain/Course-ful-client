@@ -1,4 +1,5 @@
 import React, { createContext } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { Outlet, useLoaderData } from 'react-router-dom';
 import Footer from '../components/footer/Footer';
 import Header from '../components/header/Header';
@@ -14,6 +15,12 @@ const Layout = () => {
                 <Outlet />
             </main>
             <Footer />
+            <div>
+                <Toaster
+                    position="top-center"
+                    reverseOrder={false}
+                />
+            </div>
         </CategoryContext.Provider>
     );
 };
