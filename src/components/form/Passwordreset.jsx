@@ -9,9 +9,9 @@ const Passwordreset = ({ setResetForm, from }) => {
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         try {
-            resetPassword(email);
+            await resetPassword(email);
             setResetForm(false);
             toast.success('Check your email to reset password.');
             navigate(from);
