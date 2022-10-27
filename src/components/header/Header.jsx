@@ -49,7 +49,6 @@ const Header = () => {
                                     <li>
                                         <Link to='/Profile' className="justify-between">
                                             Profile
-                                            <span className="badge">New</span>
                                         </Link>
                                     </li>
                                     <li><span onClick={() => {
