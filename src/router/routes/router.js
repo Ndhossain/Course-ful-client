@@ -11,6 +11,7 @@ import Private from "../pages/private/Private";
 import PublicOnly from "../pages/public/PublicOnly";
 import Faq from "../pages/Faq";
 import ErrorPage from "../pages/ErrorPage";
+import Profile from "../pages/private/Profile";
 
 const router = createBrowserRouter([
     {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
             {path: '/', element: <Home />},
             {
                 path: '/blog',
-                loader: () => fetch('http://localhost:5000/blog'),
+                loader: () => fetch('https://course-ful-server.vercel.app/blog'),
                 element: <Blog />
             },
             {path: '/login',element: <PublicOnly><LoginPage /></PublicOnly>},
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: '/faq',
                 element: <Faq />
+            },
+            {
+                path: '/profile',
+                element: <Private><Profile /></Private>
             }
         ]
     }

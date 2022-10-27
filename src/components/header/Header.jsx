@@ -6,6 +6,7 @@ import {BsFillSunFill, BsFillMoonFill} from 'react-icons/bs';
 import {CgMenu} from 'react-icons/cg';
 import {ImCross} from 'react-icons/im'
 import Logo from '../common/logo/Logo';
+import toast from 'react-hot-toast';
 
 
 const Header = () => {
@@ -46,12 +47,15 @@ const Header = () => {
                                 </label>
                                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                                     <li>
-                                        <Link className="justify-between">
+                                        <Link to='/Profile' className="justify-between">
                                             Profile
                                             <span className="badge">New</span>
                                         </Link>
                                     </li>
-                                    <li><Link onClick={() => logoutUser()}>Logout</Link></li>
+                                    <li><span onClick={() => {
+                                        logoutUser();
+                                        toast.success('Successfully Logged Out.')
+                                    }}>Logout</span></li>
                                 </ul>
                             </div>
                         ) : (

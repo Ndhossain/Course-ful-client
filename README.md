@@ -13,6 +13,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Pdf: React-to-pdf.
 * Toast: React-hot-toast
 * Package Manager: Yarn.
+* Authentication: Firebase Authentication.
+* Hosting: Firebase Hosting
 
 ## Project Details:
 

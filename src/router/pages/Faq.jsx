@@ -1,10 +1,9 @@
 import React from 'react';
+import UnderConstruction from '../../components/common/underconstruction/UnderConstruction';
 
 const Faq = () => {
     return (
-        <div>
-            <h1>This is faq page</h1>
-        </div>
+        <UnderConstruction />
     );
 };
 
